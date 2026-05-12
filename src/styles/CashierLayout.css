@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Glockenspiel&display=swap');
+
+:root {
+  --teal: #2BAE96;
+  --orange: #F58A2E;
+  --bg: #f2f5f4;
+  --white: #ffffff;
+  --text: #162421;
+  --muted: #7b9590;
+  --border: #e0ecea;
+  --red: #E84040;
+}
+
+.cashier-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* SIDEBAR KASIR (HIJAU) */
+.cashier-sidebar {
+  width: 240px;
+  background: #2BAE96;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
+  padding-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.sidebar-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 10px 20px;
+}
+
+/* NAV ITEM LOGIC */
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 8px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.nav-item:hover {
+  background: var(--orange);
+  color: #fff;
+  transform: translateX(5px);
+}
+
+.nav-item.active {
+  background: var(--orange);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(245, 138, 46, 0.35);
+}
+
+/* MAIN CONTENT */
+.main {
+  margin-left: 240px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: var(--bg);
+}
+
+.content {
+  padding: 26px 28px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.topbar {
+  background: var(--white);
+  padding: 14px 28px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1.5px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 90;
+}
+
+/* RESPONSIVE HAMBURGER */
+@media (max-width: 1024px) {
+  .hamburger-btn {
+    display: block;
+  }
+  .cashier-sidebar {
+    left: -260px;
+  }
+  .cashier-sidebar.active {
+    left: 0;
+  }
+  .main {
+    margin-left: 0 !important;
+  }
+  .close-sidebar {
+    display: block;
+    position: absolute;
+    right: 15px;
+    top: 30px;
+  }
+}

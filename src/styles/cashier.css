@@ -1,0 +1,525 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Glockenspiel&display=swap');
+
+:root {
+  --teal: #2BAE96;
+  --orange: #F58A2E;
+  --bg: #f2f5f4;
+  --white: #ffffff;
+  --text: #162421;
+  --muted: #7b9590;
+  --border: #e0ecea;
+  --red: #E84040;
+}
+
+.cashier-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* SIDEBAR KASIR (HIJAU) */
+.cashier-sidebar {
+  width: 240px;
+  background: #2BAE96;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
+  padding-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.sidebar-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 10px 20px;
+}
+
+/* NAV ITEM LOGIC */
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 8px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+/* HOVER & ACTIVE (ORANGE) */
+.nav-item:hover {
+  background: var(--orange);
+  color: #fff;
+  transform: translateX(5px);
+}
+
+.nav-item.active {
+  background: var(--orange);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(245, 138, 46, 0.35);
+}
+
+/* MAIN CONTENT (IDENTIK DENGAN ADMIN) */
+.main {
+  margin-left: 240px; /* Lebar sidebar */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: var(--bg);
+}
+
+/* Hilangkan limit lebar pada content agar penuh ke kanan */
+.content {
+  padding: 26px 28px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Memastikan konten mengisi seluruh lebar */
+}
+
+.topbar {
+  background: var(--white);
+  padding: 14px 28px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1.5px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 90;
+}
+
+/* Layout Utama agar Shopping Cart tetap di kanan dan Katalog bisa scroll */
+.pos-container {
+  display: flex;
+  gap: 24px;
+  height: calc(100vh - 140px); /* Pastikan tidak melebihi viewport */
+  width: 100%;
+  overflow: hidden;
+}
+
+.pos-catalog {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Container pembungkus tab kategori */
+.category-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 35px; /* Tambahkan jarak ini (sebelumnya mungkin terlalu kecil) */
+  padding: 5px 0;
+  flex-wrap: wrap; /* Supaya rapi kalau kategori bertambah banyak */
+}
+
+/* Styling tombol tab agar lebih bersih sesuai mockup */
+.tab-btn {
+ padding: 8px 24px;
+    /* Ubah ketebalan border ke 1.5px atau 2px agar terlihat jelas */
+    border: 1.5px solid #E0E7E6; 
+    border-radius: 50px; /* Membuat bentuk pill oval sempurna */
+    background-color: #FFFFFF;
+    color: #333333;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.tab-btn.active {
+  background: #E6F5F2; /* Hijau muda transparan */
+  border-color: #2BAE96; /* Teal */
+  color: #2BAE96;
+}
+
+/* Grid Produk: Mencegah ukuran mengecil */
+.pos-grid {
+  display: grid;
+  /* minmax 220px memastikan kartu punya lebar tetap */
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-auto-rows: max-content;
+  gap: 20px;
+  overflow-y: auto; /* Mengaktifkan scroll mandiri */
+  padding-right: 10px;
+  padding-bottom: 40px;
+  flex: 1;
+}
+
+/* Kartu Produk: Ukuran Tetap */
+.product-pos-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* Pastikan gap adalah 0 */
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: 0.2s;
+  border: 1px solid #f0f0f0;
+}
+
+.product-pos-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-pos-card img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+
+.product-pos-info {
+  padding: 15px;
+}
+
+.product-pos-info h4 {
+  font-size: 15px;
+  margin: 0;
+}
+
+.product-pos-info span {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.product-pos-info p {
+  font-weight: 800;
+  color: var(--text);
+  margin-top: 5px;
+}
+
+/* Stok Indikator */
+.stock-info {
+  font-size: 12px;
+  color: #888;
+  font-weight: 600;
+}
+
+.stock-info.low-stock {
+  color: #e74c3c; /* Warna merah jika stok <= 5 */
+  font-weight: 700;
+}
+
+/* Shopping Cart tetap menempel di kanan */
+.pos-cart {
+  width: 360px;
+  background: white;
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  flex-shrink: 0;
+}
+
+.cart-header-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.cart-items {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border);
+}
+
+.cart-item img {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.item-detail h5 {
+  font-size: 14px;
+  margin: 0;
+}
+
+.item-detail p {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--teal);
+}
+
+.qty-control {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qty-control button {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+}
+
+.qty-control button.plus {
+  background: var(--teal);
+  color: white;
+  border: none;
+}
+
+.cart-summary {
+  border-top: 2px dashed var(--border);
+  padding-top: 20px;
+  margin-top: 10px;
+}
+
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.summary-line.total {
+  font-size: 20px;
+  font-weight: 800;
+  margin-top: 10px;
+  color: var(--text);
+}
+
+.checkout-btn {
+  width: 100%;
+  padding: 16px;
+  background: var(--teal);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  margin-top: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.checkout-btn:hover {
+  background: var(--teal-dark);
+}
+
+/* PRODUCT */
+/* Konten utama di bawah header layout */
+.cashier-page-content {
+  padding: 20px 40px;
+}
+
+/* Kategori Filter */
+.category-filter-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.cat-item {
+  padding: 8px 25px;
+  border-radius: 20px;
+  border: 1.5px solid #162421;
+  background: #E0ECEA;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.cat-item.active {
+  background: #B4D9D2;
+}
+
+/* Tabel UI */
+/* Container Utama Tabel */
+.product-table-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 250px); /* Menyesuaikan tinggi sisa layar agar pas */
+}
+
+/* Header Tabel Teal (Tetap Diam) */
+.teal-table-header {
+  display: grid;
+  grid-template-columns: 2.5fr 1.5fr 1.5fr 1fr 1fr;
+  background-color: #2BAE96;
+  color: white;
+  padding: 18px 40px;
+  border-radius: 15px;
+  font-weight: 700;
+  font-size: 14px;
+  z-index: 10; /* Memastikan header tetap di atas saat di-scroll */
+  margin-bottom: 10px; /* Jarak kecil sebelum item pertama */
+}
+
+.table-scroll-container {
+  overflow-y: auto; /* Aktifkan scroll vertikal */
+  flex: 1; /* Mengambil sisa ruang yang ada */
+  padding-right: 5px; /* Memberi ruang untuk scrollbar agar tidak menutupi konten */
+}
+
+/* Kustomisasi Scrollbar (Opsional agar lebih cantik seperti Marile) */
+.table-scroll-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.table-scroll-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.table-scroll-container::-webkit-scrollbar-thumb {
+  background: #B4D9D2; /* Warna teal pudar sesuai filter */
+  border-radius: 10px;
+}
+
+/* Baris Produk Tetap Menggunakan Grid yang Sama */
+.product-list-row {
+  display: grid;
+  grid-template-columns: 2.5fr 1.5fr 1.5fr 1fr 1fr; /* Harus sama persis dengan header */
+  align-items: center;
+  background: white;
+  padding: 15px 40px;
+  border-radius: 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.img-thumbnail {
+  width: 100px;
+  height: 55px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-right: 25px;
+  background: #f0f0f0;
+}
+
+.img-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Tipografi */
+.col-name {
+  display: flex;
+  align-items: center;
+}
+
+.p-text-bold {
+  font-weight: 700;
+  color: #162421;
+  font-size: 14px;
+}
+
+.p-text-medium {
+  font-weight: 500;
+  color: #162421;
+  font-size: 14px;
+}
+
+/* Status & Stock Color */
+.low-stock-text {
+  color: #E84040 !important;
+  font-weight: 800;
+}
+
+.status-available {
+  color: #162421;
+}
+
+.status-empty {
+  color: #888;
+  font-style: italic;
+}
+
+/* RESPONSIVE HAMBURGER */
+@media (max-width: 1024px) {
+  .hamburger-btn {
+    display: block;
+  }
+
+  .cashier-sidebar {
+    left: -260px;
+  }
+
+  .cashier-sidebar.active {
+    left: 0;
+  }
+
+  .main {
+    margin-left: 0 !important;
+  }
+
+  .close-sidebar {
+    display: block;
+    position: absolute;
+    right: 15px;
+    top: 30px;
+  }
+}
+
+/* Container untuk kategori produk */
+.filters-container {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+/* Style tombol kategori (Pills) */
+.filter-btn {
+    padding: 8px 24px;
+    /* Ubah ketebalan border ke 1.5px atau 2px agar terlihat jelas */
+    border: 1.5px solid #E0E7E6; 
+    border-radius: 50px; /* Membuat bentuk pill oval sempurna */
+    background-color: #FFFFFF;
+    color: #333333;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Hover state */
+.filter-btn:hover {
+    border-color: var(--teal); /* Sesuaikan dengan warna hijau tosca/teal Anda */
+    color: var(--teal);
+}
+
+/* Active state (Saat diklik) */
+.filter-btn.active {
+    /* Gunakan warna teal untuk border dan teks agar kontras */
+    border-color: #2BAE96; 
+    color: #2BAE96;
+    /* Berikan background soft teal agar stroke lebih menonjol */
+    background-color: #F0F9F8; 
+}
+
+.filter-btn:hover:not(.active) {
+    border-color: #B2C4C1;
+    background-color: #F9FBFB;
+}
+
+/* POS LAYOUT (Khusus Halaman Dashboard Kasir) */
+.cashier-content-wrapper {
+  display: flex;
+  gap: 20px;
+  height: calc(100vh - 120px);
+}

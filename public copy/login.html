@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marile Login</title>
+    <link rel="stylesheet" href="css/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <main class="login-container">
+        
+        <section class="brand-section">
+            <img src="assets/img/logo_login.png" alt="Marile Logo" class="brand-logo">
+            <h1 class="brand-title">Marile</h1>
+        </section>
+
+        <section class="form-section">
+            <header class="form-header">
+                <h2>LOGIN</h2>
+                <p>Masuk untuk melanjutkan ke sistem Marile</p>
+            </header>
+
+            <form id="formLogin">
+                <div class="input-field">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+
+                <div class="input-field">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <div class="form-actions">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="remember">
+                        Remember Me
+                    </label>
+                    <a href="#" class="forgot-link">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="login-button">Login</button>
+                
+                <div id="alertMsg" class="alert-msg"></div>
+            </form>
+        </section>
+
+    </main>
+
+    <script src="js/login.js"></script>
+</body>
+</html>

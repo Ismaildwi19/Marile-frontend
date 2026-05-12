@@ -1,0 +1,165 @@
+/* =========================================================
+   CASHIER PRODUCT PAGE STYLES (CashierProduct.css)
+   ========================================================= */
+
+.cashier-page-content {
+  padding: 20px 40px;
+}
+
+/* Header Halaman */
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-header h2 {
+  font-size: 24px;
+  font-weight: 800;
+  color: #162421; /* var(--text) */
+  margin: 0;
+}
+
+.page-header h2 span {
+  color: #2BAE96; /* var(--teal) */
+}
+
+/* =========================================================
+   FILTER KATEGORI
+   ========================================================= */
+.filters-container {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 8px 24px;
+  border: 1.5px solid #E0E7E6; 
+  border-radius: 50px; 
+  background-color: #FFFFFF;
+  color: #333333;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.filter-btn:hover {
+  border-color: #2BAE96; 
+  color: #2BAE96;
+}
+
+.filter-btn.active {
+  border-color: #2BAE96; 
+  color: #2BAE96;
+  background-color: #F0F9F8; 
+}
+
+.filter-btn:hover:not(.active) {
+  border-color: #B2C4C1;
+  background-color: #F9FBFB;
+}
+
+/* =========================================================
+   TABEL PRODUK
+   ========================================================= */
+.product-table-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 250px); 
+}
+
+/* Header Tabel */
+.teal-table-header {
+  display: grid;
+  grid-template-columns: 2.5fr 1.5fr 1.5fr 1fr 1fr;
+  background-color: #2BAE96;
+  color: white;
+  padding: 18px 40px;
+  border-radius: 15px;
+  font-weight: 700;
+  font-size: 14px;
+  z-index: 10; 
+  margin-bottom: 10px; 
+}
+
+/* Area Scroll Tabel */
+.table-scroll-container {
+  overflow-y: auto; 
+  flex: 1; 
+  padding-right: 5px; 
+}
+
+.table-scroll-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.table-scroll-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.table-scroll-container::-webkit-scrollbar-thumb {
+  background: #B4D9D2; 
+  border-radius: 10px;
+}
+
+/* Baris List Produk */
+.product-list-row {
+  display: grid;
+  grid-template-columns: 2.5fr 1.5fr 1.5fr 1fr 1fr; 
+  align-items: center;
+  background: white;
+  padding: 15px 40px;
+  border-radius: 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+/* Gambar Thumbnail */
+.img-thumbnail {
+  width: 100px;
+  height: 55px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-right: 25px;
+  background: #f0f0f0;
+}
+
+.img-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Tipografi di dalam Tabel */
+.col-name {
+  display: flex;
+  align-items: center;
+}
+
+.p-text-bold {
+  font-weight: 700;
+  color: #162421;
+  font-size: 14px;
+}
+
+.p-text-medium {
+  font-weight: 500;
+  color: #162421;
+  font-size: 14px;
+}
+
+.low-stock-text {
+  color: #E84040 !important;
+  font-weight: 800;
+}
+
+.status-available {
+  color: #2BAE96; /* Saya ubah sedikit jadi warna teal agar lebih manis */
+  font-weight: 700;
+}
+
+.status-empty {
+  color: #888;
+  font-style: italic;
+}

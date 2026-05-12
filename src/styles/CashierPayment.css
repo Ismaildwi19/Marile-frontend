@@ -1,0 +1,243 @@
+/* =========================================
+   PAYMENT MODAL STYLES
+   ========================================= */
+
+/* Latar belakang gelap (Overlay) */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Kontainer utama Modal */
+.payment-modal-content {
+  background-color: #ffffff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 650px;
+  padding: 30px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  animation: slideUpFade 0.3s ease-out;
+}
+
+.payment-modal-content.qris-mode {
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Animasi Muncul */
+@keyframes slideUpFade {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Tombol Close (X) Merah */
+.modal-close-btn {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: #E53935;
+  color: white;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(229, 57, 53, 0.4);
+  transition: transform 0.2s;
+}
+
+.modal-close-btn:hover {
+  transform: scale(1.1);
+}
+
+.modal-title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 800;
+  color: #162421;
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
+/* Layout 2 Kolom */
+.payment-modal-body {
+  display: flex;
+  gap: 30px;
+}
+
+.payment-left-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Kartu Metode Pembayaran */
+.method-selector {
+  display: flex;
+  gap: 15px;
+}
+
+.method-card {
+  flex: 1;
+  background: #ffffff;
+  border: 1.5px solid #E0E7E6;
+  border-radius: 12px;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #162421;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.method-card .method-icon {
+  color: #162421;
+}
+
+.method-card.active {
+  border-color: #2BAE96;
+  background-color: #f0fbf9;
+}
+
+.method-card.active .method-icon,
+.method-card.active span {
+  color: #2BAE96;
+}
+
+/* Form Input Kiri */
+.payment-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.payment-inputs label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #162421;
+  margin-top: 5px;
+}
+
+.payment-inputs input {
+  padding: 10px 12px;
+  border: 1.5px solid #162421;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  outline: none;
+  font-family: inherit;
+}
+
+.payment-inputs .input-readonly {
+  background-color: #F9FBFB;
+  border-color: #E0E7E6;
+  color: #162421;
+}
+
+/* Tombol Aksi Bawah */
+.btn-action {
+  background-color: #F4A261; /* Warna orange dari desain */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-action:hover {
+  background-color: #e09355;
+}
+
+.btn-action.full-width {
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* Kolom Kanan: Numpad Grid */
+.numpad-grid {
+  flex: 0 0 200px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.numpad-btn {
+  background-color: #E0E7E6;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #162421;
+  cursor: pointer;
+  padding: 15px 0;
+  transition: background-color 0.1s;
+}
+
+.numpad-btn:active {
+  background-color: #cdd6d5;
+}
+
+.btn-equals {
+  background-color: #B4C6C4;
+}
+
+.btn-clear {
+  color: #E53935;
+}
+
+/* Tampilan Khusus QRIS */
+.qris-barcode-container h2 {
+  font-size: 24px;
+  font-weight: 800;
+  color: #162421;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.qris-barcode-container .qris-total {
+  font-size: 20px;
+  font-weight: 700;
+  color: #162421;
+  margin-bottom: 20px;
+}
+
+.barcode-placeholder {
+  display: inline-flex;
+  padding: 20px;
+  border: 2px dashed #B4C6C4;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+/* Responsif Mobile */
+@media (max-width: 600px) {
+  .payment-modal-body {
+    flex-direction: column;
+  }
+  
+  .numpad-grid {
+    flex: auto;
+    grid-template-columns: repeat(4, 1fr); /* Susun ke samping kalau di HP */
+  }
+}
