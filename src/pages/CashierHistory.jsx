@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import CashierLayout from '../components/CashierLayout';
 import '../styles/CashierHistory.css';
-import { Calendar, ChevronDown, X, ShoppingBag, Printer } from 'lucide-react';
+import { Calendar, X, ShoppingBag, Printer } from 'lucide-react';
 
 const CashierHistory = () => {
-  // State untuk mengontrol modal detail
   const [selectedTrx, setSelectedTrx] = useState(null);
+  
+  // State untuk Filter & Sort
+  const [timeFilter, setTimeFilter] = useState('Hari ini');
+  const [sortOrder, setSortOrder] = useState('Terbaru');
 
-  // Dummy data (Saya tambahkan detail item untuk keperluan pop-up)
+  // Dummy data
   const [transactions] = useState([
     { 
       id: '#TRX-001', 
@@ -23,12 +26,8 @@ const CashierHistory = () => {
       ]
     },
     { id: '#TRX-002', date: '26/05/2026, 12.15', payment: 'QRIS', itemsCount: '2 item', total: 'Rp 45.000', status: 'Selesai', details: [] },
-    { id: '#TRX-003', date: '26/05/2026, 12.30', payment: 'Tunai', itemsCount: '1 item', total: 'Rp. 20.000', status: 'Selesai', details: [] },
-    { id: '#TRX-004', date: '26/05/2026, 12.45', payment: 'Tunai', itemsCount: '8 item', total: 'Rp. 320.000', status: 'Selesai', details: [] },
-    { id: '#TRX-005', date: '26/05/2026, 13.00', payment: 'Tunai', itemsCount: '3 item', total: 'Rp. 75.000', status: 'Selesai', details: [] },
-    { id: '#TRX-006', date: '26/05/2026, 13.20', payment: 'QRIS', itemsCount: '4 item', total: 'Rp. 110.000', status: 'Selesai', details: [] },
-    { id: '#TRX-007', date: '26/05/2026, 13.45', payment: 'Tunai', itemsCount: '2 item', total: 'Rp. 50.000', status: 'Selesai', details: [] },
-    { id: '#TRX-008', date: '26/05/2026, 14.00', payment: 'Tunai', itemsCount: '5 item', total: 'Rp. 150.000', status: 'Selesai', details: [] },
+    { id: '#TRX-003', date: '26/05/2026, 12.30', payment: 'Tunai', itemsCount: '1 item', total: 'Rp 20.000', status: 'Selesai', details: [] },
+    { id: '#TRX-004', date: '26/05/2026, 12.45', payment: 'Tunai', itemsCount: '8 item', total: 'Rp 320.000', status: 'Selesai', details: [] },
   ]);
 
   const closeModal = () => setSelectedTrx(null);
@@ -36,18 +35,46 @@ const CashierHistory = () => {
   return (
     <CashierLayout>
       <div className="history-page-content">
+        
+        {/* HEADER & FILTERS */}
         <div className="history-header-row">
           <h2>Riwayat Transaksi</h2>
-          <div className="history-actions">
-            <button className="history-btn-outline">
-              <Calendar size={16} /> Hari ini
-            </button>
-            <button className="history-btn-outline">
-              Urutkan : Terbaru <ChevronDown size={16} />
-            </button>
+          
+          <div className="history-actions-container">
+            {/* Dropdown Waktu */}
+            <div className="filter-item">
+              <select 
+                className="history-dropdown"
+                value={timeFilter}
+                onChange={(e) => setTimeFilter(e.target.value)}
+              >
+                <option value="Hari ini">Hari ini</option>
+                <option value="Minggu ini">Minggu ini</option>
+                <option value="Bulan ini">Bulan ini</option>
+              </select>
+            </div>
+
+            {/* Date Picker */}
+            <div className="filter-item date-picker-wrapper">
+              <input type="date" className="history-date-input" />
+            </div>
+
+            {/* Dropdown Urutan */}
+            <div className="filter-item sort-wrapper">
+              <span className="sort-label">Urutkan:</span>
+              <select 
+                className="history-dropdown"
+                value={sortOrder}
+                onChange={(e) => setSortOrder(e.target.value)}
+              >
+                <option value="Terbaru">Terbaru</option>
+                <option value="Terlama">Terlama</option>
+              </select>
+            </div>
           </div>
         </div>
 
+        {/* TABEL */}
         <div className="history-table-container">
           <div className="history-table-header">
             <div>Id Transaksi</div>
@@ -69,7 +96,6 @@ const CashierHistory = () => {
                 <div className="font-bold">{trx.total}</div>
                 <div className="status-selesai">{trx.status}</div>
                 <div className="action-col">
-                  {/* Klik titik tiga untuk set data ke modal */}
                   <button className="action-btn" onClick={() => setSelectedTrx(trx)}>⋮</button>
                 </div>
               </div>
@@ -77,7 +103,7 @@ const CashierHistory = () => {
           </div>
         </div>
 
-        {/* MODAL DETAIL TRANSAKSI */}
+        {/* MODAL DETAIL */}
         {selectedTrx && (
           <div className="history-modal-overlay" onClick={closeModal}>
             <div className="history-modal-content" onClick={(e) => e.stopPropagation()}>

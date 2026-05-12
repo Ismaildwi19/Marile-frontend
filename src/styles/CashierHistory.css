@@ -30,6 +30,56 @@
   animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+/* Container Filter Agar Sejajar Horisontal */
+.history-actions-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.filter-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Dropdown & Input Style */
+.history-dropdown, 
+.history-date-input {
+  padding: 8px 12px;
+  border: 1.5px solid #162421;
+  border-radius: 10px;
+  background-color: white;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #162421;
+  outline: none;
+  cursor: pointer;
+}
+
+.sort-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #666;
+}
+
+/* Responsive adjustment */
+@media (max-width: 768px) {
+  .history-actions-container {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .history-dropdown, 
+  .history-date-input {
+    flex: 1;
+    min-width: 120px;
+  }
+}
+
 @keyframes modalPop {
   from { transform: scale(0.8); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
