@@ -1,315 +1,271 @@
 /* =========================================================
-   CASHIER HISTORY PAGE STYLES (CashierHistory.css)
-   ========================================================= */
+   ADMIN HISTORY PAGE STYLES 
+========================================================= 
+*/
 
+:root {
+  --primary-teal: #2BAE96;
+  --primary-orange: #F4A261;
+  --text-dark: #162421;
+  --text-gray: #666;
+  --bg-light: #F9FBFB;
+  --border-color: #E0E7E6;
+  --white: #ffffff;
+}
+
+/* 1. Layout Utama */
 .history-page-content {
   padding: 20px 40px;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 100px); /* Menyesuaikan sisa layar */
+  height: calc(100vh - 80px);
+  background-color: #f4f7f6; /* Sedikit kontras dengan card */
 }
 
-/* Header & Tombol Filter */
+/* 2. Header & Filter Row (Presisi & Sejajar) */
 .history-header-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 25px;
 }
 
 .history-header-row h2 {
   font-size: 24px;
   font-weight: 800;
-  color: #162421; /* var(--text) */
+  color: var(--text-dark);
   margin: 0;
 }
 
-.history-actions {
+.history-actions-container {
   display: flex;
-  gap: 12px;
+  align-items: center;
+  gap: 15px;
 }
 
-.history-btn-outline {
+.filter-item {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 16px;
-  background-color: transparent;
-  border: 1.5px solid #162421;
-  border-radius: 8px;
+}
+
+/* Reusable Dropdown & Input Styles */
+.history-dropdown, 
+.history-date-input,
+.history-select-filter {
+  padding: 8px 12px;
+  border: 1.5px solid var(--text-dark);
+  border-radius: 10px;
+  background-color: var(--white);
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-weight: 600;
   font-size: 14px;
-  color: #162421;
+  color: var(--text-dark);
+  outline: none;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.history-btn-outline:hover {
-  background-color: #f0f5f4;
+.history-dropdown:focus, 
+.history-date-input:focus {
+  border-color: var(--primary-teal);
+  box-shadow: 0 0 0 3px rgba(43, 174, 150, 0.1);
 }
 
-.history-btn-outline .icon {
-  font-size: 12px;
+.sort-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-gray);
 }
 
-/* Container Tabel Utama */
+/* 3. Container Tabel */
 .history-table-container {
-  background: #ffffff;
-  border-radius: 12px;
+  background: var(--white);
+  border-radius: 15px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
-  flex: 1; /* Biar tabel mengisi sisa ruang ke bawah */
-  overflow: hidden; /* Supaya sudut rounded table-header tetap rapi */
+  flex: 1;
+  overflow: hidden; /* Menjaga border-radius tetap rapi */
 }
 
-/* GRID SETUP UNTUK KOLOM (Penting agar lurus) */
+/* Grid System (Pastikan Kolom Sejajar) */
 .history-table-header,
 .history-table-row {
   display: grid;
-  /* Proporsi lebar masing-masing kolom */
-  grid-template-columns: 1.5fr 2fr 1.5fr 1fr 1.5fr 1fr 0.5fr;
+  /* Proporsi: ID, Waktu, Payment, Item, Total, Status, Aksi */
+  grid-template-columns: 1.2fr 1.8fr 1.2fr 1fr 1.2fr 1fr 0.6fr;
   align-items: center;
   padding: 16px 24px;
 }
 
-/* Header Tabel */
 .history-table-header {
-  background-color: #2BAE96;
-  color: #ffffff;
+  background-color: var(--primary-teal);
+  color: var(--white);
   font-weight: 700;
   font-size: 14px;
 }
 
-/* Body Tabel & Scroll */
 .history-table-body {
   overflow-y: auto;
   flex: 1;
 }
 
-/* Kustomisasi Scrollbar */
-.history-table-body::-webkit-scrollbar {
-  width: 6px;
-}
-.history-table-body::-webkit-scrollbar-track {
-  background: transparent;
-}
-.history-table-body::-webkit-scrollbar-thumb {
-  background: #E0E7E6;
-  border-radius: 10px;
-}
-
-/* Baris Tabel */
 .history-table-row {
-  border-bottom: 1px solid #E0E7E6;
+  border-bottom: 1px solid var(--border-color);
   font-size: 14px;
   color: #333;
   transition: background-color 0.2s ease;
 }
 
 .history-table-row:hover {
-  background-color: #F9FBFB;
+  background-color: var(--bg-light);
 }
 
-/* Hilangkan border bawah pada baris terakhir */
 .history-table-row:last-child {
   border-bottom: none;
 }
 
-/* Tipografi Tabel */
-.font-bold {
-  font-weight: 700;
-  color: #162421;
-}
+/* Helper Typography */
+.font-bold { font-weight: 700; color: var(--text-dark); }
+.text-center { text-align: center; }
+.status-selesai { font-weight: 600; color: var(--text-dark); }
 
-.status-selesai {
-  font-weight: 600;
-  color: #162421;
-}
-
-.text-center {
-  text-align: center;
-}
-
-/* Tombol Titik Tiga (Aksi) */
-.action-col {
-  display: flex;
-  justify-content: center;
-}
-
+/* Tombol Aksi (Tiga Titik) */
+.action-col { display: flex; justify-content: center; }
 .action-btn {
-  background: none;
-  border: none;
-  font-size: 20px;
-  font-weight: bold;
-  color: #162421;
-  cursor: pointer;
-  padding: 4px 8px;
-  border-radius: 50%;
-  transition: background 0.2s;
+  background: none; border: none;
+  border-radius: 50%; padding: 6px;
+  cursor: pointer; transition: background 0.2s;
+  display: flex; align-items: center; justify-content: center;
+}
+.action-btn:hover { background: var(--border-color); }
+
+/* 4. Modal / Pop-Up Detail */
+.history-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 10000;
+  backdrop-filter: blur(4px);
 }
 
-.action-btn:hover {
-  background: #E0E7E6;
+.history-modal-content {
+  background: var(--white);
+  width: 90%;
+  max-width: 420px;
+  border-radius: 20px;
+  position: relative;
+  border: 4px solid var(--primary-teal);
+  padding: 25px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* RESPONSIVE DESIGN */
-/* Tablet dan Mobile Besar */
-@media (max-width: 768px) {
-  .history-page-content {
-    padding: 15px 20px;
-    height: auto;
+@keyframes modalPop {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.history-modal-close {
+  position: absolute;
+  top: 15px; right: 15px;
+  background: #ffeded; color: #E53935;
+  border: none; border-radius: 50%;
+  width: 32px; height: 32px;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+
+.trx-id-badge {
+  display: inline-block;
+  background: #f0fbf9; color: var(--primary-teal);
+  padding: 4px 12px; border-radius: 20px;
+  font-size: 12px; font-weight: 800;
+  border: 1px solid var(--primary-teal);
+  margin-top: 8px;
+}
+
+.info-grid {
+  display: flex; justify-content: space-between;
+  margin: 20px 0 15px; padding-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.detail-items-box {
+  background: var(--bg-light);
+  border-radius: 12px;
+  padding: 15px;
+  border: 1px solid var(--border-color);
+}
+
+.item-row {
+  display: flex; justify-content: space-between;
+  padding: 8px 0; border-bottom: 1px dashed var(--border-color);
+  font-size: 13px;
+}
+
+.total-row-modal {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 15px;
+}
+
+.btn-print-receipt {
+  width: 100%;
+  background: var(--primary-orange);
+  color: var(--white); border: none;
+  padding: 14px; border-radius: 12px;
+  font-weight: 800; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  box-shadow: 0 4px 0 #d98a4a;
+  margin-top: 20px;
+  transition: transform 0.1s;
+}
+
+.btn-print-receipt:active { transform: translateY(2px); box-shadow: none; }
+
+/* 5. Responsive Design */
+@media (max-width: 1024px) {
+  .history-table-header, .history-table-row {
+    grid-template-columns: 1fr 1.5fr 1fr 0.8fr 1.2fr 0.8fr 0.5fr;
+    font-size: 13px;
   }
+}
 
+@media (max-width: 768px) {
+  .history-page-content { padding: 15px 20px; }
+  
   .history-header-row {
     flex-direction: column;
     align-items: flex-start;
-    gap: 16px;
+    gap: 15px;
   }
 
-  .history-header-row h2 {
-    font-size: 20px;
-  }
-
-  .history-actions {
+  .history-actions-container {
     width: 100%;
-    justify-content: flex-end;
+    flex-wrap: wrap;
   }
 
-  .history-table-container {
-    border-radius: 8px;
-  }
-
-  .history-table-header,
-  .history-table-row {
-    grid-template-columns: 1fr 1fr 1fr; /* Kurangi kolom menjadi 3 */
-    padding: 12px 16px;
-    font-size: 12px;
-  }
-
-  /* Sembunyikan kolom yang kurang penting pada mobile */
-  .history-table-row > :nth-child(4),
-  .history-table-row > :nth-child(5),
-  .history-table-row > :nth-child(6) {
-    display: none;
-  }
-
-  .history-table-header > :nth-child(4),
-  .history-table-header > :nth-child(5),
-  .history-table-header > :nth-child(6) {
-    display: none;
+  .history-table-container { overflow-x: auto; }
+  
+  .history-table-header, .history-table-row {
+    min-width: 800px;
   }
 }
 
-/* Mobile Kecil */
 @media (max-width: 480px) {
-  .history-page-content {
-    padding: 10px 15px;
-  }
-
-  .history-header-row h2 {
-    font-size: 18px;
-  }
-
-  .history-actions {
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .history-btn-outline {
+  .history-dropdown, .history-date-input {
     width: 100%;
-    justify-content: center;
   }
-
-  .history-table-header,
-  .history-table-row {
-    grid-template-columns: 1fr; /* Stack semua kolom */
-    padding: 10px 12px;
-    text-align: left;
-  }
-
-  .history-table-row {
-    display: block;
-    border-bottom: 1px solid #E0E7E6;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-  }
-
-  .history-table-row > * {
-    display: block;
-    margin-bottom: 5px;
-  }
-
-  .action-col {
-    text-align: center;
+  
+  .history-modal-content {
+    padding: 20px;
   }
 }
 
-/* =========================================================
-   RESPONSIVE DESIGN (Horizontal Scroll Table)
-   ========================================================= */
-
-@media (max-width: 768px) {
-  .history-page-content {
-    padding: 15px 20px;
-    height: auto;
-  }
-
-  /* Rapikan Header & Tombol */
-  .history-header-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-  }
-
-  .history-header-row h2 {
-    font-size: 20px;
-  }
-
-  .history-actions {
-    width: 100%;
-    justify-content: flex-start;
-    flex-wrap: wrap; /* Biar tombol turun jika kepanjangan */
-  }
-
-  /* KUNCI TABEL RAPI DI MOBILE: Aktifkan scroll samping */
-  .history-table-container {
-    border-radius: 8px;
-    overflow-x: auto; /* Bisa digeser ke kanan-kiri */
-    /* Opsional: kustomisasi scrollbar untuk container tabel */
-    scrollbar-width: thin; 
-  }
-
-  .history-table-container::-webkit-scrollbar {
-    height: 6px;
-  }
-  .history-table-container::-webkit-scrollbar-thumb {
-    background: #E0E7E6;
-    border-radius: 10px;
-  }
-
-  /* Pertahankan susunan Grid asli, tapi paksa lebar minimalnya */
-  /* Agar tabel tidak menyusut dan tetap rapi */
-  .history-table-header,
-  .history-table-row {
-    min-width: 850px; /* Memaksa tabel agar tetap lebar */
-    padding: 12px 16px;
-  }
-}
-
-/* Penyesuaian ekstra untuk layar sangat kecil */
-@media (max-width: 480px) {
-  .history-page-content {
-    padding: 10px 15px;
-  }
-
-  .history-header-row h2 {
-    font-size: 18px;
-  }
-
-  .history-btn-outline {
-    width: 100%;
-    justify-content: center;
-  }
+/* Scrollbar Customization */
+.history-table-body::-webkit-scrollbar { width: 6px; }
+.history-table-body::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 10px;
 }
