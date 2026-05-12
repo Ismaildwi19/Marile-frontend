@@ -287,7 +287,7 @@ footer {
     .best-item.center img { width: 100%; max-width: 450px; }
     
     .menu-grid {
-        grid-template-columns: repeat(2, 1fr); /* Jadi 2 kolom */
+        grid-template-columns: repeat(2, 1fr);
     }
 
     footer { padding: 50px 40px; }
@@ -297,7 +297,7 @@ footer {
 @media (max-width: 768px) {
     header {
         padding: 15px 20px;
-        flex-direction: column; /* Menu pindah ke bawah logo */
+        flex-direction: column;
         gap: 15px;
     }
 
@@ -307,7 +307,7 @@ footer {
     }
 
     .section-title h2 {
-        font-size: 36px; /* Judul lebih kecil di HP */
+        font-size: 36px;
     }
 
     /* Best Seller jadi menumpuk ke bawah */

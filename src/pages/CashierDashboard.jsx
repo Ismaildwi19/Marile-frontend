@@ -165,7 +165,7 @@ const CashierDashboard = () => {
         isOpen={isPaymentModalOpen} 
         onClose={() => setIsPaymentModalOpen(false)} 
         totalAmount={total} 
-        cartItems={cart} // <--- TAMBAHKAN INI (Mengirim detail belanja)
+        cartItems={cart}
         onComplete={(kembalian) => {
           alert(`Transaksi Selesai! Kembalian: Rp ${kembalian.toLocaleString('id-ID')}\nNota sedang dicetak...`);
           setCart([]); 

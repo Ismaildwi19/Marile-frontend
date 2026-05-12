@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-// Pastikan path import komponen CashierLayout benar sesuai struktur folder Anda
 import CashierLayout from '../components/CashierLayout'; 
-import '../styles/CashierProduct.css'; // Pastikan file CSS ini sudah dibuat dan diisi dengan style yang diperlukan
+import '../styles/CashierProduct.css'; 
 
 const CashierProducts = () => {
   const [activeFilter, setActiveFilter] = useState('Semua');

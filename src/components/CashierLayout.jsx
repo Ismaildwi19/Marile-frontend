@@ -4,7 +4,7 @@ import {
   LayoutDashboard, ShoppingBag, History, Wallet, 
   Percent, Settings, LogOut, Search, Bell, User, Menu, X 
 } from 'lucide-react';
-import '../styles/cashier.css'; // Pastikan di file CSS ini class .nav-label sudah ada style-nya seperti di Admin
+import '../styles/CashierLayout.css'; // Pastikan di file CSS ini class .nav-label sudah ada style-nya seperti di Admin
 
 const CashierLayout = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);

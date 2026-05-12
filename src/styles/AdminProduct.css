@@ -696,7 +696,7 @@
 /* --- FORM GRID & INPUTS --- */
 .form-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Membagi dua kolom */
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
     margin-bottom: 25px;
 }
@@ -780,7 +780,7 @@
 /* RESPONSIVE UNTUK MODAL DI HP */
 @media (max-width: 568px) {
     .form-grid {
-        grid-template-columns: 1fr; /* Jadi satu kolom saja kalau di HP */
+        grid-template-columns: 1fr;
         gap: 15px;
     }
     

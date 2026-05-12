@@ -24,7 +24,7 @@
   max-width: 450px;
   border-radius: 20px;
   position: relative;
-  border: 4px solid #2BAE96; /* Menggunakan warna teal header */
+  border: 4px solid #2BAE96;
   padding: 25px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.2);
   animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -242,7 +242,7 @@
 
 .btn-print-receipt {
   width: 100%;
-  background: #F4A261; /* Warna Orange Aksen */
+  background: #F4A261;
   color: white;
   border: none;
   padding: 14px;

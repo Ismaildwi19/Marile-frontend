@@ -19,7 +19,7 @@
   width: 90%;
   max-width: 850px;
   position: relative;
-  border: 6px solid #2BAE96; /* Warna Hijau Teal Desain */
+  border: 6px solid #2BAE96;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -271,7 +271,7 @@
 .btn-clear {
   color: #E53935 !important;
   font-size: 14px !important;
-  background-color: #fff5f5 !important; /* Beri warna background soft merah agar beda */
+  background-color: #fff5f5 !important;
   display: flex;
   align-items: center;
   justify-content: center;

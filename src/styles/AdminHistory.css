@@ -19,7 +19,7 @@
   display: flex;
   flex-direction: column;
   height: calc(100vh - 80px);
-  background-color: #f4f7f6; /* Sedikit kontras dengan card */
+  background-color: #f4f7f6;
 }
 
 /* 2. Header & Filter Row (Presisi & Sejajar) */
@@ -86,7 +86,7 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  overflow: hidden; /* Menjaga border-radius tetap rapi */
+  overflow: hidden;
 }
 
 /* Grid System (Pastikan Kolom Sejajar) */
