@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CashierLayout from '../components/CashierLayout';
 import { ShoppingCart, Plus, Minus } from 'lucide-react';
-import '../styles/cashier.css';
+import '../styles/CashierDashboard.css';
 import CashierPayment from '../components/CashierPayment';
 
 const CashierDashboard = () => {
@@ -164,12 +164,12 @@ const CashierDashboard = () => {
       <CashierPayment 
         isOpen={isPaymentModalOpen} 
         onClose={() => setIsPaymentModalOpen(false)} 
-        // 👇 Ubah bagian ini: Kirimkan nilai 'total' sebagai Angka, bukan Teks
         totalAmount={total} 
+        cartItems={cart} // <--- TAMBAHKAN INI (Mengirim detail belanja)
         onComplete={(kembalian) => {
           alert(`Transaksi Selesai! Kembalian: Rp ${kembalian.toLocaleString('id-ID')}\nNota sedang dicetak...`);
-          setCart([]); // Kosongkan keranjang
-          setIsPaymentModalOpen(false); // Tutup modal
+          setCart([]); 
+          setIsPaymentModalOpen(false);
         }}
       />
       
