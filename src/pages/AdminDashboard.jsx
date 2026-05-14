@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import AdminLayout from '../components/AdminLayout';
 import { 
   LineChart, 
@@ -39,7 +40,10 @@ const orders = [
   { id: '#INV-2026-004', time: '20 Mei 2026, 10.22', amount: 'Rp 45.000' },
 ];
 
+
+
 const AdminDashboard = () => {
+  const navigate = useNavigate();
   return (
     <AdminLayout>
       <div className="page-title" style={{ marginBottom: '20px', fontWeight: 'bold' }}>
@@ -152,7 +156,8 @@ const AdminDashboard = () => {
           <div className="card">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
               <h4 style={{ margin: 0 }}>Pesanan Terbaru</h4>
-              <span style={{ color: 'var(--teal)', fontSize: '12px', fontWeight: 'bold', cursor: 'pointer' }}>Lihat Semua</span>
+              <span style={{ color: 'var(--teal)', fontSize: '12px', fontWeight: 'bold', cursor: 'pointer' }} onClick={() => navigate('/admin/history')} >Lihat Semua
+      </span>
             </div>
             {orders.map((order, index) => (
               <div className="pesanan-item" key={index}>
