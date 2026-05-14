@@ -1,0 +1,325 @@
+/* Container Utama */
+.settings-page-content {
+  display: flex;
+  gap: 25px;
+  padding: 20px;
+  height: calc(100vh - 100px); /* Menyesuaikan tinggi layar agar tidak scroll body */
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #162421;
+}
+
+/* --- SIDEBAR NAV (Kiri) --- */
+.settings-sidebar-nav {
+  width: 300px;
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-sidebar-nav h3 {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 25px;
+}
+
+.menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.menu-item-btn {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px;
+  border: none;
+  background: transparent;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.menu-item-btn.active {
+  background: #EAF7F5; /* Teal sangat muda */
+}
+
+.icon-wrapper {
+  width: 42px;
+  height: 42px;
+  background: #D9F1EE;
+  color: #2BAE96;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+.menu-item-btn.active .icon-wrapper {
+  background: #2BAE96;
+  color: white;
+}
+
+.menu-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-title {
+  font-weight: 700;
+  font-size: 14px;
+  margin: 0;
+  color: #162421;
+}
+
+.menu-subtitle {
+  font-size: 11px;
+  color: #888;
+  margin: 0;
+}
+
+/* --- MAIN CONTENT (Kanan) --- */
+.settings-main-container {
+  flex: 1;
+  background: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.settings-scroll-area {
+  flex: 1;
+  padding: 35px;
+  overflow-y: auto;
+}
+
+.settings-scroll-area h3 {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 35px;
+}
+
+/* --- PROFILE SECTION --- */
+.profile-settings-container {
+  display: flex;
+  gap: 50px;
+}
+
+.avatar-section {
+  width: 160px;
+  text-align: center;
+}
+
+.label-bold {
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.avatar-placeholder {
+  width: 110px;
+  height: 110px;
+  background: #2BAE96; /* Teal Base */
+  color: white;
+  border-radius: 50%;
+  margin: 0 auto 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.btn-upload {
+  border: 1.5px solid #2BAE96;
+  color: #2BAE96;
+  background: white;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 auto 10px;
+}
+
+.file-info {
+  font-size: 11px;
+  color: #999;
+}
+
+.form-section {
+  flex: 1;
+  max-width: 500px;
+}
+
+/* --- FORM COMPONENTS --- */
+.input-group {
+  margin-bottom: 22px;
+}
+
+.input-group label {
+  display: block;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1.5px solid #E0E7E6;
+  border-radius: 12px;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.input-group input:focus {
+  border-color: #2BAE96;
+  box-shadow: 0 0 0 4px rgba(43, 174, 150, 0.1);
+}
+
+.password-input-wrapper {
+  position: relative;
+}
+
+.btn-toggle-eye {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #A0AEC0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+/* --- NOTIFIKASI --- */
+.notif-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid #F1F1F1;
+}
+
+.notif-title {
+  font-weight: 700;
+  font-size: 15px;
+  margin: 0 0 4px 0;
+}
+
+.notif-desc {
+  font-size: 13px;
+  color: #777;
+  margin: 0;
+}
+
+/* Toggle Switch */
+.switch {
+  position: relative;
+  width: 46px;
+  height: 24px;
+}
+
+.switch input { opacity: 0; width: 0; height: 0; }
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #E2E8F0;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px; width: 18px;
+  left: 3px; bottom: 3px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider { background-color: #2BAE96; }
+input:checked + .slider:before { transform: translateX(22px); }
+
+/* --- KEAMANAN --- */
+.info-box-teal {
+  background: #EAF7F5;
+  padding: 16px;
+  border-radius: 15px;
+  display: flex;
+  gap: 15px;
+  color: #2BAE96;
+  margin-top: 25px;
+  align-items: flex-start;
+}
+
+.info-box-teal p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+/* --- FOOTER ACTION --- */
+.settings-action-footer {
+  padding: 20px 35px;
+  border-top: 1.5px solid #F1F1F1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  background: white;
+}
+
+.btn-cancel {
+  background: #F1F5F9;
+  color: #64748B;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-save-settings {
+  background: #F4A261; /* Orange sesuai screenshot */
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #D98A4A; /* Efek tombol timbul */
+  transition: 0.2s;
+}
+
+.btn-save-settings:hover {
+  background: #e99552;
+}
+
+.btn-save-settings:active {
+  transform: translateY(3px);
+  box-shadow: none;
+}

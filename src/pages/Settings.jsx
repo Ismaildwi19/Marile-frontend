@@ -1,51 +1,100 @@
 import React, { useState } from 'react';
 import { User, Bell, Shield, Upload, Eye, EyeOff } from 'lucide-react';
-// Import layout sesuai peran (AdminLayout / CashierLayout)
+// Import kedua layout agar bisa berganti otomatis
 import AdminLayout from '../components/AdminLayout'; 
-import '../styles/SettingsAdmin.css';
+import CashierLayout from '../components/CashierLayout'; 
+import '../styles/Settings.css';
 
 const Settings = ({ role = "Admin" }) => {
   const [activeMenu, setActiveMenu] = useState('profil');
   const [showPassword, setShowPassword] = useState({ old: false, new: false, confirm: false });
+  
+  // State untuk form profil agar bisa diinput
+  const [profileData, setProfileData] = useState({
+    nama: '',
+    username: '',
+    email: '',
+    telp: ''
+  });
 
-  // Render Konten Berdasarkan Menu yang Dipilih
+  // LOGIKA DINAMIS: Pilih layout berdasarkan prop 'role'
+  // Jika role="Admin" pakai AdminLayout, selain itu pakai CashierLayout
+  const Layout = role === "Admin" ? AdminLayout : CashierLayout;
+
+  const handleProfileChange = (e) => {
+    const { name, value } = e.target;
+    setProfileData(prev => ({ ...prev, [name]: value }));
+  };
+
   const renderContent = () => {
     switch (activeMenu) {
       case 'profil':
         return (
           <div className="settings-card-content">
-            <h3>Profil {role}</h3>
-            <p className="subtitle">Kelola informasi akun {role.toLowerCase()} yang digunakan untuk login</p>
+            <div className="settings-header-inner">
+              <h3>Profil {role}</h3>
+              <p className="subtitle">Kelola informasi akun {role.toLowerCase()} Anda</p>
+            </div>
+
             <div className="profile-settings-container">
               <div className="avatar-section">
                 <p className="label-bold">Foto Profil</p>
-                <div className="avatar-placeholder"></div>
+                <div className="avatar-placeholder">
+                   {/* Inisial nama jika foto kosong */}
+                   <span>{profileData.nama.charAt(0)}</span>
+                </div>
                 <button className="btn-upload">
                   <Upload size={16} /> Ubah Foto
                 </button>
                 <span className="file-info">Format JPG, PNG, Maks 2MB</span>
               </div>
+
               <div className="form-section">
                 <div className="input-group">
                   <label>Nama Lengkap</label>
-                  <input type="text" placeholder="Masukkan nama lengkap" />
+                  <input 
+                    type="text" 
+                    name="nama"
+                    value={profileData.nama}
+                    onChange={handleProfileChange}
+                    placeholder="Masukkan nama lengkap" 
+                  />
                 </div>
                 <div className="input-group">
                   <label>Username</label>
-                  <input type="text" placeholder="Masukkan username" />
+                  <input 
+                    type="text" 
+                    name="username"
+                    value={profileData.username}
+                    onChange={handleProfileChange}
+                    placeholder="Masukkan username" 
+                  />
                 </div>
                 <div className="input-group">
                   <label>Email</label>
-                  <input type="email" placeholder="Masukkan email" />
+                  <input 
+                    type="email" 
+                    name="email"
+                    value={profileData.email}
+                    onChange={handleProfileChange}
+                    placeholder="Masukkan email" 
+                  />
                 </div>
                 <div className="input-group">
                   <label>Nomor Telepon</label>
-                  <input type="text" placeholder="Masukkan nomor telepon" />
+                  <input 
+                    type="text" 
+                    name="telp"
+                    value={profileData.telp}
+                    onChange={handleProfileChange}
+                    placeholder="Masukkan nomor telepon" 
+                  />
                 </div>
               </div>
             </div>
           </div>
         );
+
       case 'notifikasi':
         return (
           <div className="settings-card-content">
@@ -72,10 +121,11 @@ const Settings = ({ role = "Admin" }) => {
             </div>
           </div>
         );
+
       case 'keamanan':
         return (
           <div className="settings-card-content">
-            <h3>Ubah Password</h3>
+            <h3>Keamanan Akun</h3>
             <div className="password-form">
               {['Password Lama', 'Password Baru', 'Konfirmasi Password'].map((label, idx) => {
                 const key = idx === 0 ? 'old' : idx === 1 ? 'new' : 'confirm';
@@ -89,6 +139,7 @@ const Settings = ({ role = "Admin" }) => {
                       />
                       <button 
                         type="button" 
+                        className="btn-toggle-eye"
                         onClick={() => setShowPassword({...showPassword, [key]: !showPassword[key]})}
                       >
                         {showPassword[key] ? <EyeOff size={18} /> : <Eye size={18} />}
@@ -99,7 +150,7 @@ const Settings = ({ role = "Admin" }) => {
               })}
               <div className="info-box-teal">
                 <Shield size={20} />
-                <p>Gunakan minimal 8 karakter dengan kombinasi huruf, angka, dan simbol untuk password yang lebih kuat</p>
+                <p>Gunakan minimal 8 karakter dengan kombinasi huruf, angka, dan simbol.</p>
               </div>
             </div>
           </div>
@@ -110,52 +161,57 @@ const Settings = ({ role = "Admin" }) => {
   };
 
   return (
-    <AdminLayout> {/* Sesuaikan dengan CashierLayout jika perlu */}
-      <div className="settings-page-wrapper">
-        <div className="settings-sidebar">
+    <Layout>
+      <div className="settings-page-content">
+        <div className="settings-sidebar-nav">
           <h3>Menu Pengaturan</h3>
           <div className="menu-list">
             <button 
-              className={`menu-item ${activeMenu === 'profil' ? 'active' : ''}`}
+              className={`menu-item-btn ${activeMenu === 'profil' ? 'active' : ''}`}
               onClick={() => setActiveMenu('profil')}
             >
-              <div className="icon-bg"><User size={20} /></div>
-              <div className="menu-text">
-                <p className="m-title">Profil {role}</p>
-                <p className="m-desc">Kelola informasi akun {role.toLowerCase()}</p>
+              <div className="icon-wrapper"><User size={20} /></div>
+              <div className="menu-info">
+                <p className="menu-title">Profil {role}</p>
+                <p className="menu-subtitle">Informasi pribadi</p>
               </div>
             </button>
+
             <button 
-              className={`menu-item ${activeMenu === 'notifikasi' ? 'active' : ''}`}
+              className={`menu-item-btn ${activeMenu === 'notifikasi' ? 'active' : ''}`}
               onClick={() => setActiveMenu('notifikasi')}
             >
-              <div className="icon-bg"><Bell size={20} /></div>
-              <div className="menu-text">
-                <p className="m-title">Notifikasi</p>
-                <p className="m-desc">Atur preferensi notifikasi</p>
+              <div className="icon-wrapper"><Bell size={20} /></div>
+              <div className="menu-info">
+                <p className="menu-title">Notifikasi</p>
+                <p className="menu-subtitle">Atur peringatan</p>
               </div>
             </button>
+
             <button 
-              className={`menu-item ${activeMenu === 'keamanan' ? 'active' : ''}`}
+              className={`menu-item-btn ${activeMenu === 'keamanan' ? 'active' : ''}`}
               onClick={() => setActiveMenu('keamanan')}
             >
-              <div className="icon-bg"><Shield size={20} /></div>
-              <div className="menu-text">
-                <p className="m-title">Keamanan</p>
-                <p className="m-desc">Kelola keamanan akun</p>
+              <div className="icon-wrapper"><Shield size={20} /></div>
+              <div className="menu-info">
+                <p className="menu-title">Keamanan</p>
+                <p className="menu-subtitle">Kata sandi & akun</p>
               </div>
             </button>
           </div>
         </div>
 
-        <div className="settings-main-card">
-          {renderContent()}
-          <div className="card-footer">
-            <button className="btn-save">Simpan Perubahan</button>
+        <div className="settings-main-container">
+          <div className="settings-scroll-area">
+             {renderContent()}
+          </div>
+          <div className="settings-action-footer">
+            <button className="btn-cancel">Batalkan</button>
+            <button className="btn-save-settings">Simpan Perubahan</button>
           </div>
         </div>
       </div>
-    </AdminLayout>
+    </Layout>
   );
 };
 
